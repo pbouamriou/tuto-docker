@@ -1,15 +1,12 @@
 FROM debian:stretch
 
-LABEL VERSION="1.0"
 LABEL MAINTAINER="philippe.bouamriou@thalesgroup.com"
+LABEL VERSION="1.0"
 
 RUN set -x \
     && apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests \
-       -y lighttpd
+       -y procps
 
-EXPOSE 80
-COPY lighttpd.conf /
-COPY index.html /var/www
-ENTRYPOINT [ "lighttpd", "-D" , "-f", "/lighttpd.conf"]
-STOPSIGNAL SIGQUIT
+ENTRYPOINT ["/usr/bin/top", "-b"]
+CMD [ "-c" ]

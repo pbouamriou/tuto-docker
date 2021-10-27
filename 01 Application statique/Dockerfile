@@ -5,5 +5,5 @@ FROM scratch
 LABEL MAINTAINER="philippe.bouamriou@thalesgroup.com"
 
 # hello est une application statique
-ADD hello /
+ADD . /
 CMD [ "/hello" ]
