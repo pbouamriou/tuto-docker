@@ -1,0 +1,4 @@
+FROM lighttpd
+
+LABEL VERSION="1.0"
+LABEL MAINTAINER="philippe.bouamriou@thalesgroup.com"

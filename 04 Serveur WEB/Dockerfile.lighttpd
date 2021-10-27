@@ -10,8 +10,14 @@ RUN set -x \
 
 EXPOSE 80
 COPY lighttpd.conf /
-COPY index.html /var/www
+RUN set -x && mkdir -p /var/lighttpd/www \
+           && chown www-data:www-data /var/lighttpd/www
+COPY index.html /var/lighttpd/www
+VOLUME /var/lighttpd/www
 ENTRYPOINT [ "lighttpd", "-D" , "-f", "/lighttpd.conf"]
 HEALTHCHECK --interval=10s --timeout=3s \
   CMD curl -f http://localhost/ || exit 1
 STOPSIGNAL SIGQUIT
+
+ONBUILD RUN rm /var/lighttpd/www/index.html
+ONBUILD COPY www/* /var/lighttpd/www/

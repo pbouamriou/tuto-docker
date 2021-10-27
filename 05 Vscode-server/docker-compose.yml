@@ -1,0 +1,15 @@
+version: '2.4'
+services:
+  code-server:
+    build:
+      context: ./code-server
+    environment:
+        - PGID=1000
+        - TZ=Europe/London
+        - PASSWORD=toto
+        - SUDO_PASSWORD=toto
+    volumes:
+      - ./config-vscode:/config
+    ports:
+      - "8443:8080"
+    restart: always
