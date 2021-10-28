@@ -6,16 +6,22 @@ help: ## This help.
 all: build ## Build images
 
 clean: ## clean
-	@rm -rf config-vscode
-	@docker rmi hello 2>/dev/null || true
+	@sudo rm -rf config-vscode
+	@docker rmi 05vscode-server_vscode-server 2>/dev/null || true
 
 build:  ## build image
 	@[ -d config-vscode ] || mkdir -p config-vscode
 	docker-compose build
 
-run: build ## run services
+run: ## run services
 	docker-compose up -d
 
 stop: ## stop services
 	docker-compose down
+
+shell: ## start a shell in code-server service
+	docker-compose exec vscode-server /bin/zsh
+
+volume-ls: ## list all volumes
+	docker volume ls | grep 05vscode-server
 

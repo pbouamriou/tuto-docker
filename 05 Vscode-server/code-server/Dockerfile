@@ -11,3 +11,9 @@ RUN apt-get update && \
        make \
     && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 8 \
     && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8
+
+RUN mkdir -p /workspace
+
+RUN chown abc:abc /workspace
+
+VOLUME [ "/workspace" ]

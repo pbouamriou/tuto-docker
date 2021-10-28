@@ -1,6 +1,6 @@
 version: '2.4'
 services:
-  code-server:
+  vscode-server:
     build:
       context: ./code-server
     environment:
@@ -10,6 +10,10 @@ services:
         - SUDO_PASSWORD=toto
     volumes:
       - ./config-vscode:/config
+      - workspace:/workspace
     ports:
       - "8080:8443"
     restart: always
+
+volumes:
+  workspace:
