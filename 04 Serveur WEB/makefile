@@ -16,7 +16,7 @@ build-lighttpd: Dockerfile.lighttpd lighttpd.conf index.html ## build docker ima
 build-perso: build-lighttpd Dockerfile.perso www/index.html ## build docker image
 	docker build -t lighttpd-perso -f Dockerfile.perso .
 
-run: build-perso ## run docker (lighttpd-perso)
+run: ## run docker (lighttpd-perso)
 	docker run -t -i -p 8080:80 --rm --name lighttpd-perso-container lighttpd-perso
 
 run-volume: build-perso ## run docker (lighttpd-perso)
